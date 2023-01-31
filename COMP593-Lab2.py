@@ -11,8 +11,7 @@ def main():
     }
 
     about_me['movies'].insert(0, {'title': 'Batman: Assault on Arkham', 'genre': 'Action'})
-    about_me['pizza_toppings'].extend(('bacon', 'hot peppers', 'jalapeno'))
-    about_me['pizza_toppings'].sort()
+    add_pizza_toppings(about_me, ['bacon', 'hot peppers', 'jalapeno'])
 
     print_student_name_and_id(about_me)
     print_pizza_toppings(about_me)
@@ -24,14 +23,21 @@ def print_student_name_and_id(about_me):
     print(f"My name is {about_me['full_name']}, but you can call me Supreme Galactic Emperor {first_name}.")
     print(f"My student ID is {about_me['student_id']}.")
     print()
+    return
+
+def add_pizza_toppings(about_me, toppings):
+    about_me['pizza_toppings'].extend((toppings))
+    about_me['pizza_toppings'].sort()
+    return
     
 def print_pizza_toppings(about_me):
     print("My favourite pizza toppings are:")
-    for topping in about_me['pizza_toppings'][:3]:
-        print(f"- {topping}")
+    for toppings in about_me['pizza_toppings'][:3]:
+        print(f"- {toppings}")
     print("\nMy favourite pizza toppings are:")
     for topping in about_me['pizza_toppings'][3:]:
         print(f"- {topping}")
+    return 
 
 def print_movie_genres(about_me):
     genres = [movie['genre'].lower() for movie in about_me['movies']]
@@ -40,6 +46,7 @@ def print_movie_genres(about_me):
         genre_str = genre_str.rsplit(',', 1)[0] + ", and" + genre_str.rsplit(',', 1)[1]
     print(f"\nI like to watch {genre_str} movies.")
     print()
+    return
 
 def print_movie_titles(movie_list):
     titles = [movie['title'].title() for movie in movie_list]
@@ -47,6 +54,7 @@ def print_movie_titles(movie_list):
     if len(titles) > 1:
         title_str = title_str.rsplit(',', 1)[0] + ", and" + title_str.rsplit(',', 1)[1]
     print(f"Some of my favourite movies are {title_str}!")
-    
+    return
+
 if __name__ == '__main__':
     main()
